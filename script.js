@@ -1,35 +1,33 @@
-const API_KEY = AIzaSyBzIIt_H6QsrQGyqdmmLuvi9Trm_O-Xvko;
+const API_KEY = "AIzaSyBzIIt_H6QsrQGyqdmmLuvi9Trm_O-Xvko";
 
 async function generateQuestion() {
   const domain = document.getElementById("domain").value;
   if (!domain) {
-    alert("Please select a domain");
+    alert("Select domain first");
     return;
   }
 
-  const prompt = `
-You are an HR interviewer.
-Ask one professional interview question for a ${domain} candidate.
-Difficulty: medium.
-Only give the question.
-`;
+  const prompt = `Ask one professional interview question for a ${domain} candidate.`;
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
-    }
-  );
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        })
+      }
+    );
 
-  const data = await response.json();
-  const question =
-    data.candidates?.[0]?.content?.parts?.[0]?.text ||
-    "AI error. Try again.";
+    const data = await res.json();
+    document.getElementById("questionBox").innerText =
+      data.candidates[0].content.parts[0].text;
 
-  document.getElementById("questionBox").innerHTML =
-    `<h3>Question:</h3><p>${question}</p>`;
+  } catch (e) {
+    document.getElementById("questionBox").innerText =
+      "Error: API blocked by browser (CORS).";
+  }
 }
+
