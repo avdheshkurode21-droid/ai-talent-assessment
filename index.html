@@ -1,49 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI HR Assessment Platform</title>
+  <meta charset="UTF-8" />
+  <title>AI HR Assessment</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+<h1>AI HR Assessment Portal</h1>
 
-  <h1>AI HR Assessment Platform</h1>
-  <p class="subtitle">Smart Hiring with AI Evaluation</p>
+<select id="domain">
+  <option value="">Select Domain</option>
+  <option value="HR">HR Services</option>
+  <option value="Finance">Finance</option>
+  <option value="Software Developer">Software Developer</option>
+  <option value="Business Analyst">Business Analyst</option>
+</select>
 
-  <!-- LOGIN -->
-  <div class="card">
-    <h2>Candidate Login</h2>
+<button onclick="generateQuestion()">Start Test</button>
 
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="text" id="phone" placeholder="Phone Number">
-    <input type="text" id="regid" placeholder="Registration ID">
-
-    <select id="domain">
-      <option value="">Select Your Domain</option>
-      <option>HR Services</option>
-      <option>Finance</option>
-      <option>Company Secretary</option>
-      <option>Software Developer</option>
-      <option>Frontend Developer</option>
-      <option>Backend Developer</option>
-      <option>Software Tester</option>
-      <option>Business Analyst</option>
-      <option>Management Services</option>
-    </select>
-
-    <button onclick="startTest()">Start Assessment</button>
-  </div>
-
-  <!-- STATUS -->
-  <div class="card hidden" id="statusBox">
-    <h2>Assessment Status</h2>
-    <p id="statusText"></p>
-  </div>
-
-</div>
+<div id="questionBox"></div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
