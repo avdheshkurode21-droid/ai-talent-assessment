@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyBzIIt_H6QsrQGyqdmmLuvi9Trm_O-Xvko";
+const API_KEY = AIzaSyBzIIt_H6QsrQGyqdmmLuvi9Trm_O-Xvko;
 
 async function generateQuestion() {
   const domain = document.getElementById("domain").value;
